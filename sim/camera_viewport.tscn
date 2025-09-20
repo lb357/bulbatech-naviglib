@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bined3eqst0x"]
+
+[ext_resource type="Script" uid="uid://ojca7klekoag" path="res://camera_viewport.gd" id="1_lj54p"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lj54p"]
+top_radius = 0.05
+bottom_radius = 0.025
+height = 0.1
+
+[node name="CameraViewport" type="SubViewport"]
+script = ExtResource("1_lj54p")
+
+[node name="Camera" type="Camera3D" parent="."]
+current = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0.05)
+mesh = SubResource("CylinderMesh_lj54p")
