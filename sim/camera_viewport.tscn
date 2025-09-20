@@ -8,6 +8,7 @@ bottom_radius = 0.025
 height = 0.1
 
 [node name="CameraViewport" type="SubViewport"]
+render_target_update_mode = 4
 script = ExtResource("1_lj54p")
 
 [node name="Camera" type="Camera3D" parent="."]
