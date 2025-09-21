@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2whj4id5h3jh"]
+
+[ext_resource type="Script" uid="uid://ba1pbfxdg7ttn" path="res://scripts/FreeCam.gd" id="1_2d4yc"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2d4yc"]
+radius = 0.86175257
+
+[node name="FreeCam" type="CharacterBody3D"]
+script = ExtResource("1_2d4yc")
+
+[node name="Camera" type="Camera3D" parent="."]
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_2d4yc")
