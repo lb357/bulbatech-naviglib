@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bined3eqst0x"]
 
-[ext_resource type="Script" uid="uid://ojca7klekoag" path="res://camera_viewport.gd" id="1_lj54p"]
+[ext_resource type="Script" uid="uid://ojca7klekoag" path="res://scripts/camera_viewport.gd" id="1_lj54p"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_lj54p"]
 top_radius = 0.05
