@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfifuxhvjhnec"]
+[gd_scene load_steps=13 format=3 uid="uid://bfifuxhvjhnec"]
 
 [ext_resource type="Script" uid="uid://chqq0g6wcxhbo" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="ArrayMesh" uid="uid://ccocwrxrwfq5n" path="res://models/field.obj" id="2_tbgi4"]
@@ -28,8 +28,11 @@ texture_filter = 2
 inner_radius = 0.1
 outer_radius = 0.2
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_h2yge"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_tbgi4"]
 viewport_path = NodePath("LeftCameraViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h2yge"]
+viewport_path = NodePath("RightCameraViewport")
 
 [node name="Main" type="Node3D" node_paths=PackedStringArray("vp_list")]
 script = ExtResource("1_sugp2")
@@ -50,13 +53,11 @@ sky_mode = 1
 [node name="LeftCameraViewport" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_tbgi4")]
 handle_input_locally = false
 size = Vector2i(640, 480)
-render_target_update_mode = 4
-target = NodePath("../Drone")
-target_position_offset = Vector3(0.05, 0, 0)
+target = NodePath("../Drone/LeftCamera")
 
 [node name="RightCameraViewport" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_tbgi4")]
-target = NodePath("../Drone")
-target_position_offset = Vector3(-0.05, 0, 0)
+size = Vector2i(640, 480)
+target = NodePath("../Drone/RightCamera")
 
 [node name="Drone" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
@@ -65,10 +66,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 mesh = SubResource("TorusMesh_0xm2m")
 
+[node name="LeftCamera" type="Marker3D" parent="Drone"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.05, 0, 0)
+
+[node name="RightCamera" type="Marker3D" parent="Drone"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.05, 0, 0)
+
 [node name="FreeCam" parent="." instance=ExtResource("4_jyhfs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.164598, 0)
 
-[node name="TextureRect" type="TextureRect" parent="FreeCam"]
-offset_right = 640.0
-offset_bottom = 480.0
+[node name="LeftRect" type="TextureRect" parent="FreeCam"]
+anchors_preset = -1
+anchor_right = 0.14400001
+anchor_bottom = 0.19100001
+offset_right = -0.5546875
+offset_bottom = 0.231987
+texture = SubResource("ViewportTexture_tbgi4")
+expand_mode = 3
+
+[node name="RightRect" type="TextureRect" parent="FreeCam"]
+anchors_preset = -1
+anchor_left = 0.143
+anchor_right = 0.287
+anchor_bottom = 0.19100001
+offset_left = 0.2639923
+offset_right = -0.2906494
+offset_bottom = 0.231987
 texture = SubResource("ViewportTexture_h2yge")
+expand_mode = 3
