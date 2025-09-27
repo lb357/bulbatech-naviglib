@@ -40,7 +40,7 @@ func changeState() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if is_operating else Input.MOUSE_MODE_VISIBLE
 	
 	
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	if !is_operating:
 		velocity = Vector3.ZERO

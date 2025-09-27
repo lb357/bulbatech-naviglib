@@ -45,7 +45,11 @@ SimpleGrass="*res://addons/simplegrasstextured/singleton.tscn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/simplegrasstextured/plugin.cfg")
+enabled=PackedStringArray()
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 
@@ -83,11 +87,6 @@ mv_dw={
 [network]
 
 limits/packet_peer_stream/max_buffer_po2=64
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
 
 [shader_globals]
 

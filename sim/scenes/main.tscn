@@ -1,26 +1,36 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfifuxhvjhnec"]
+[gd_scene load_steps=16 format=3 uid="uid://bfifuxhvjhnec"]
 
 [ext_resource type="Script" uid="uid://chqq0g6wcxhbo" path="res://scripts/main.gd" id="1_sugp2"]
 [ext_resource type="ArrayMesh" uid="uid://ccocwrxrwfq5n" path="res://models/field.obj" id="2_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://b1i7xigo40p5w" path="res://materials/hdri/qwantani_sunset_puresky_4k.exr" id="2_tefeu"]
 [ext_resource type="PackedScene" uid="uid://bined3eqst0x" path="res://prefabs/camera_viewport.tscn" id="3_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://bmpfcjl8fresi" path="res://textures/grass.jpg" id="3_tefeu"]
+[ext_resource type="Texture2D" uid="uid://b0lvk06p00oxl" path="res://textures/plouged_filed.jpg" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://d2whj4id5h3jh" path="res://prefabs/free_cam.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://bh7r1qhryania" path="res://textures/NormalMap.png" id="6_tipki"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jyhfs"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_o6xl0"]
+panorama = ExtResource("2_tefeu")
 
-[sub_resource type="Sky" id="Sky_tbgi4"]
-sky_material = SubResource("ProceduralSkyMaterial_jyhfs")
+[sub_resource type="Sky" id="Sky_tipki"]
+sky_material = SubResource("PanoramaSkyMaterial_o6xl0")
 
 [sub_resource type="Environment" id="Environment_tefeu"]
 background_mode = 2
-sky = SubResource("Sky_tbgi4")
+sky = SubResource("Sky_tipki")
 tonemap_mode = 2
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_o6xl0"]
+load_path = "res://.godot/imported/DisplacementMap.png-e3bab4b41e57e71d9048c4469f796e58.s3tc.ctex"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o6xl0"]
-shading_mode = 0
 albedo_texture = ExtResource("3_tefeu")
+normal_enabled = true
+normal_scale = 8.95
+normal_texture = ExtResource("6_tipki")
+heightmap_deep_parallax = true
+heightmap_min_layers = 8
+heightmap_max_layers = 32
+heightmap_texture = SubResource("CompressedTexture2D_o6xl0")
 uv1_scale = Vector3(100, 100, 100)
 texture_filter = 2
 
@@ -42,6 +52,7 @@ vp_list = [NodePath("LeftCameraViewport"), NodePath("RightCameraViewport")]
 environment = SubResource("Environment_tefeu")
 
 [node name="Terrain" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.88799775, 0)
 mesh = ExtResource("2_tbgi4")
 surface_material_override/0 = SubResource("StandardMaterial3D_o6xl0")
 
