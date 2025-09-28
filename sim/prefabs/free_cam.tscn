@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ba1pbfxdg7ttn" path="res://scripts/FreeCam.gd" id="1_2d4yc"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2d4yc"]
-radius = 0.86175257
+radius = 0.001
 
 [node name="FreeCam" type="CharacterBody3D"]
 script = ExtResource("1_2d4yc")
@@ -11,5 +11,23 @@ script = ExtResource("1_2d4yc")
 [node name="Camera" type="Camera3D" parent="."]
 current = true
 
+[node name="RayCast3D" type="RayCast3D" parent="Camera"]
+target_position = Vector3(0, 0, -5)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_2d4yc")
+
+[node name="GUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InfoAlias" type="Label" parent="GUI"]
+layout_mode = 0
+offset_left = 488.0
+offset_top = 320.0
+offset_right = 704.0
+offset_bottom = 378.0
+theme_override_font_sizes/font_size = 42
+horizontal_alignment = 1

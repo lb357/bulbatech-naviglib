@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 @export var vp_list: Array[Viewport]
 @export var img_format: Image.Format = Image.FORMAT_L8

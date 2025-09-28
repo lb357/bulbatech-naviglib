@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Info" load_steps=2 format=3 uid="uid://cmbkllrs1nmlu"]
+
+[ext_resource type="Script" uid="uid://7xpasko1vape" path="res://scripts/info_block_res.gd" id="1_pee5k"]
+
+[resource]
+script = ExtResource("1_pee5k")
+metadata/_custom_type_script = "uid://7xpasko1vape"
