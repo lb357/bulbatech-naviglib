@@ -23,12 +23,10 @@ def double_decode(value: bytes) -> float:
 
 class VideoCapture:
     def __init__(self, vp_id: int = 0, url: str = "ws://localhost:9080"):
-        self.ws = connect(url)
+        self.ws = connect(url, max_size=2**64)
         self.vp_id = vp_id
         self.rows, self.columns, self.format = self.ping()
         self.channels = formats[self.format]
-
-        self.double_echo() # TEST
 
     def ping(self):
         self.ws.send(b"\x00" + int_encode(self.vp_id))
@@ -60,4 +58,17 @@ class VideoCapture:
         data = self.ws.recv()
         assert b"\x05" == data[0:1]
         val = double_decode(data[1:9])
-        print(f"{test_num} -> {val}")
+        #print(f"{test_num} -> {val}")
+
+    def release(self):
+        self.ws.close()
+
+
+class Control:
+    def __init__(self, vp_id: int = 0, url: str = "ws://localhost:9080"):
+        self.ws = connect(url, max_size=2**64)
+
+    def move_to(self, x: float, y: float, z: float):
+        self.ws.send(b"\x01" + double_encode(x) + double_encode(y) + double_encode(z))
+        data = self.ws.recv()
+        assert b"\x01" == data[0:1]

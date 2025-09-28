@@ -39,10 +39,6 @@ run/main_scene="uid://bfifuxhvjhnec"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[editor_plugins]
-
-enabled=PackedStringArray()
-
 [filesystem]
 
 import/blender/enabled=false
@@ -98,14 +94,6 @@ sgt_player_mov={
 "type": "vec3",
 "value": Vector3(0, 0, 0)
 }
-sgt_normal_displacement={
-"type": "sampler2D",
-"value": "res://addons/simplegrasstextured/images/normal.png"
-}
-sgt_motion_texture={
-"type": "sampler2D",
-"value": "res://addons/simplegrasstextured/images/motion.png"
-}
 sgt_wind_direction={
 "type": "vec3",
 "value": Vector3(1, 0, 0)
@@ -121,8 +109,4 @@ sgt_wind_strength={
 sgt_wind_turbulence={
 "type": "float",
 "value": 1.0
-}
-sgt_wind_pattern={
-"type": "sampler2D",
-"value": "res://addons/simplegrasstextured/images/wind_pattern.png"
 }

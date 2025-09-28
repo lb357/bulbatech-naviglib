@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d2xlayhmvx8w0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_q61os"]
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kwe2g"]
+size = Vector2(0.25, 0.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ocwk"]
+albedo_color = Color(0.2520276, 0.25202766, 0.25202763, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_1tbxf"]
+top_radius = 0.025
+bottom_radius = 0.025
+
+[node name="Marker" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_q61os")
+
+[node name="MarkerContour" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.001, 0)
+mesh = SubResource("PlaneMesh_kwe2g")
+
+[node name="MarkerBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.001, 0)
+material_override = SubResource("StandardMaterial3D_2ocwk")
+mesh = SubResource("CylinderMesh_1tbxf")

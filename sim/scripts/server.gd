@@ -2,6 +2,9 @@ extends Node
 
 @export var vp_list: Array[Viewport]
 @export var img_format: Image.Format = Image.FORMAT_L8
+@export var drone: Marker3D
+@export var drone_speed: float = 1.0
+
 
 const PORT = 9080
 var tcp_server = TCPServer.new()
@@ -59,6 +62,12 @@ func _process(_delta):
 					ping_packet.append_array(vp_x)
 					ping_packet.append_array(vp_format)
 					peer.send(ping_packet)
+				elif packet[0] == 1:
+					var x = packet.slice(1, 9).decode_double(0)
+					var y = packet.slice(9, 17).decode_double(0)
+					var z = packet.slice(17, 25).decode_double(0)
+					move_to(x, y, z)
+					peer.send(packet.slice(0, 1))
 				elif packet[0] == 4:
 					var vp_id = packet.slice(1, 9).decode_s64(0)
 					
@@ -94,3 +103,7 @@ func get_viewport_data(viewport: Viewport, image_format: int = img_format) -> Pa
 	var image = texture.get_image()
 	image.convert(image_format)
 	return image.get_data()
+
+func move_to(x: float, y: float, z: float) -> void:
+	var tween = create_tween()
+	tween.tween_property(drone, "position", Vector3(x, y, z), Vector3(x, y, z).distance_to(drone.position)/drone_speed)
